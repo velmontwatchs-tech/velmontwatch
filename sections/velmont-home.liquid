@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velmont Watch — Luxury Timepieces</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #0D1B2A;
+  --navy-mid: #112236;
+  --cream: #F5F0E8;
+  --cream-dim: #c8c0b0;
+  --gold: #B8963E;
+  --gold-light: #E8D5A3;
+  --gold-dim: rgba(184,150,62,0.3);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+.ann {
+  background: var(--gold);
+  color: var(--navy);
+  text-align: center;
+  padding: 9px;
+  font-size: 9px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.hdr {
+  background: var(--navy);
+  border-bottom: 1px solid var(--gold-dim);
+  padding: 0 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.hdr-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 84px;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+.nav { display: flex; gap: 32px; list-style: none; }
+.nav-r { justify-content: flex-end; align-items: center; }
+.nav a, .nav button {
+  font-size: 9.5px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--cream); text-decoration: none; opacity: .65;
+  transition: opacity .3s, color .3s; background: none; border: none;
+  cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 300;
+  position: relative;
+}
+.nav a::after {
+  content:''; position:absolute; bottom:-3px; left:0; width:0; height:1px;
+  background:var(--gold); transition: width .3s;
+}
+.nav a:hover, .nav button:hover { opacity:1; color:var(--gold-light); }
+.nav a:hover::after { width:100%; }
+.logo-wrap { text-align:center; }
+.logo-name {
+  font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300;
+  letter-spacing:10px; color:var(--gold-light); text-transform:uppercase;
+  display:block; text-decoration:none;
+}
+.logo-div { display:flex; align-items:center; justify-content:center; gap:7px; margin:4px 0 3px; }
+.logo-line { height:1px; width:24px; background:var(--gold); opacity:.55; }
+.logo-gem { width:4px; height:4px; background:var(--gold); transform:rotate(45deg); flex-shrink:0; }
+.logo-sub { font-size:7.5px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; display:block; }
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse 80% 60% at 50% 60%, #1a3050 0%, var(--navy) 70%);
+}
+.hero-grain {
+  position:absolute; inset:0; opacity:.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+.hero-lines { position:absolute; inset:0; pointer-events:none; }
+.hero-lines::before {
+  content:''; position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:520px; height:520px;
+  border:1px solid rgba(184,150,62,0.08); border-radius:50%;
+}
+.hero-lines::after {
+  content:''; position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:720px; height:720px;
+  border:1px solid rgba(184,150,62,0.04); border-radius:50%;
+}
+.hero-content {
+  position:relative; z-index:2;
+  text-align:center; padding: 0 24px;
+  animation: fadeUp 1.2s ease .3s both;
+}
+.hero-eyebrow { font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:28px; display:block; }
+.hero-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight:200; line-height:1.05;
+  color:var(--cream); letter-spacing:2px; margin-bottom:32px;
+}
+.hero-title em { font-style:italic; color:var(--gold-light); }
+.hero-line { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:32px; }
+.hero-line-seg { height:1px; width:48px; background:var(--gold); opacity:.4; }
+.hero-line-dot { width:3px; height:3px; background:var(--gold); border-radius:50%; }
+.hero-sub { font-size:11px; letter-spacing:2px; color:var(--cream-dim); margin-bottom:48px; max-width:400px; margin-left:auto; margin-right:auto; line-height:2; }
+.btn-gold {
+  display:inline-block; border:1px solid var(--gold);
+  color:var(--gold-light); font-family:'Montserrat',sans-serif;
+  font-size:9px; letter-spacing:4px; text-transform:uppercase;
+  padding:14px 40px; text-decoration:none; cursor:pointer;
+  background:transparent; transition:background .35s, color .35s; margin: 0 8px;
+}
+.btn-gold:hover { background:var(--gold); color:var(--navy); }
+.btn-ghost {
+  display:inline-block; border:1px solid rgba(245,240,232,0.2);
+  color:var(--cream-dim); font-family:'Montserrat',sans-serif;
+  font-size:9px; letter-spacing:4px; text-transform:uppercase;
+  padding:14px 40px; text-decoration:none; cursor:pointer;
+  background:transparent; transition:border-color .35s, color .35s; margin: 0 8px;
+}
+.btn-ghost:hover { border-color:var(--cream); color:var(--cream); }
+.hero-scroll {
+  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  font-size:8px; letter-spacing:3px; color:var(--gold); text-transform:uppercase;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+.hero-scroll-line { width:1px; height:36px; background: linear-gradient(to bottom, var(--gold), transparent); }
+.section { padding: 120px 56px; max-width:1360px; margin:0 auto; }
+.section-full { padding: 120px 0; }
+.section-eyebrow { font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; display:block; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,54px); font-weight:300; color:var(--cream); letter-spacing:2px; line-height:1.1; margin-bottom:16px; }
+.section-title em { font-style:italic; color:var(--gold-light); }
+.gold-rule { display:flex; align-items:center; gap:10px; margin-bottom:48px; }
+.gold-rule-line { height:1px; background:var(--gold); opacity:.4; width:40px; }
+.gold-rule-gem { width:4px; height:4px; background:var(--gold); transform:rotate(45deg); }
+.collection-bg { background: linear-gradient(180deg, var(--navy) 0%, #0a1520 100%); border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); }
+.collection-header { text-align:center; padding: 0 56px; max-width:1360px; margin:0 auto 64px; }
+.collection-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:2px; padding: 0 56px; max-width:1360px; margin:0 auto; }
+.watch-card { background:var(--navy-mid); position:relative; overflow:hidden; transition: transform .4s ease; cursor:pointer; }
+.watch-card:hover { transform: translateY(-4px); }
+.watch-card:hover .watch-card-overlay { opacity:1; }
+.watch-img { width:100%; aspect-ratio:3/4; background: radial-gradient(ellipse at 50% 40%, #1e3a5a 0%, #0a1a2e 100%); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.w-svg { width:52%; }
+.watch-card-overlay { position:absolute; inset:0; background: linear-gradient(to top, rgba(13,27,42,0.95) 0%, transparent 50%); opacity:.6; transition:opacity .4s; }
+.watch-info { padding:28px 28px 32px; border-top:1px solid var(--gold-dim); }
+.watch-badge { font-size:8px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:8px; display:block; }
+.watch-name { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--cream); letter-spacing:1px; margin-bottom:6px; }
+.watch-price { font-size:13px; letter-spacing:2px; color:var(--gold-light); font-weight:300; }
+.watch-cta { display:inline-block; margin-top:16px; font-size:8.5px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; text-decoration:none; border-bottom:1px solid rgba(184,150,62,0.3); padding-bottom:2px; transition:border-color .3s, color .3s; }
+.watch-cta:hover { color:var(--gold-light); border-color:var(--gold); }
+.collection-footer { text-align:center; padding:56px 56px 0; }
+.story-grid { display:grid; grid-template-columns:1fr 1fr; gap:96px; align-items:center; }
+.story-box { width:100%; aspect-ratio:4/5; background: radial-gradient(ellipse at 40% 35%, #1e3a5a 0%, #080f1a 100%); display:flex; align-items:center; justify-content:center; border:1px solid var(--gold-dim); position:relative; }
+.story-box::before { content:''; position:absolute; top:-12px; left:-12px; right:12px; bottom:12px; border:1px solid rgba(184,150,62,0.15); pointer-events:none; }
+.story-quote-mark { font-family:'Cormorant Garamond',serif; font-size:200px; font-weight:200; color:rgba(184,150,62,0.06); line-height:1; position:absolute; top:-20px; left:16px; pointer-events:none; }
+.story-text { color:var(--cream-dim); font-size:14px; line-height:2.2; letter-spacing:.5px; margin-bottom:32px; }
+.story-text strong { color:var(--cream); font-weight:400; }
+.story-sig { font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; color:var(--gold-light); font-weight:300; letter-spacing:1px; }
+.story-sig-title { font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-top:4px; }
+.testimonials-bg { background: #080f1a; border-top:1px solid var(--gold-dim); border-bottom:1px solid var(--gold-dim); }
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--gold-dim); }
+.test-card { background:#080f1a; padding:52px 40px; transition:background .3s; }
+.test-card:hover { background:#0d1520; }
+.test-stars { color:var(--gold); font-size:11px; letter-spacing:3px; margin-bottom:24px; }
+.test-quote { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; font-style:italic; color:var(--cream); line-height:1.7; margin-bottom:28px; letter-spacing:.3px; }
+.test-author { font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; }
+.test-location { font-size:9px; letter-spacing:2px; color:var(--cream-dim); margin-top:3px; text-transform:uppercase; }
+.newsletter { text-align:center; }
+.newsletter-inner { max-width:560px; margin:0 auto; }
+.newsletter-title { font-family:'Cormorant Garamond',serif; font-size:clamp(38px,4vw,58px); font-weight:300; color:var(--cream); letter-spacing:2px; margin-bottom:16px; line-height:1.1; }
+.newsletter-title em { font-style:italic; color:var(--gold-light); }
+.newsletter-sub { font-size:11px; letter-spacing:2px; color:var(--cream-dim); margin-bottom:40px; line-height:2; }
+.nl-form { display:flex; gap:0; max-width:440px; margin:0 auto; }
+.nl-input { flex:1; background:transparent; border:1px solid var(--gold-dim); border-right:none; color:var(--cream); font-family:'Montserrat',sans-serif; font-size:11px; letter-spacing:2px; padding:14px 20px; outline:none; transition:border-color .3s; }
+.nl-input::placeholder { color:var(--cream-dim); }
+.nl-input:focus { border-color:var(--gold); }
+.nl-btn { background:var(--gold); border:1px solid var(--gold); color:var(--navy); font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; padding:14px 24px; cursor:pointer; transition:background .3s; white-space:nowrap; }
+.nl-btn:hover { background:var(--gold-light); }
+.footer { background:var(--navy); border-top:1px solid var(--gold-dim); padding:64px 56px 40px; }
+.footer-inner { max-width:1360px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:64px; margin-bottom:56px; }
+.footer-brand-name { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; letter-spacing:8px; color:var(--gold-light); text-transform:uppercase; margin-bottom:4px; }
+.footer-brand-sub { font-size:8px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:20px; }
+.footer-brand-text { font-size:11px; color:var(--cream-dim); line-height:1.9; letter-spacing:.3px; max-width:260px; }
+.footer-col-title { font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:20px; }
+.footer-col ul { list-style:none; }
+.footer-col ul li { margin-bottom:10px; }
+.footer-col ul li a { font-size:11px; letter-spacing:1px; color:var(--cream-dim); text-decoration:none; transition:color .3s; }
+.footer-col ul li a:hover { color:var(--gold-light); }
+.footer-bottom { max-width:1360px; margin:0 auto; border-top:1px solid var(--gold-dim); padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+.footer-copy { font-size:9px; letter-spacing:2px; color:var(--cream-dim); text-transform:uppercase; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100% { opacity:.5; transform:translateX(-50%) translateY(0); } 50% { opacity:1; transform:translateX(-50%) translateY(6px); } }
+.reveal { opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+@media (max-width:768px) {
+  .hdr { padding:0 20px; }
+  .nav:not(.nav-r) { display:none; }
+  .hdr-inner { grid-template-columns: auto 1fr auto; }
+  .logo-name { font-size:20px; letter-spacing:6px; }
+  .collection-grid { grid-template-columns:1fr; padding:0 20px; }
+  .story-grid { grid-template-columns:1fr; gap:48px; }
+  .test-grid { grid-template-columns:1fr; }
+  .footer-inner { grid-template-columns:1fr 1fr; gap:40px; }
+  .section { padding:80px 24px; }
+  .collection-header { padding:0 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ann">Free worldwide shipping &nbsp;·&nbsp; Complimentary gift packaging &nbsp;·&nbsp; 2-year international warranty</div>
+
+<header class="hdr">
+  <div class="hdr-inner">
+    <nav><ul class="nav">
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Our Story</a></li>
+      <li><a href="#">Craftsmanship</a></li>
+    </ul></nav>
+    <a href="#" class="logo-wrap" style="text-decoration:none;">
+      <span class="logo-name">Velmont</span>
+      <div class="logo-div"><div class="logo-line"></div><div class="logo-gem"></div><div class="logo-line"></div></div>
+      <span class="logo-sub">Watch</span>
+    </a>
+    <nav><ul class="nav nav-r">
+      <li><a href="#">Boutique</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#" style="display:flex;align-items:center;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a></li>
+      <li><a href="#" style="display:flex;align-items:center;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">New Collection — 2025</span>
+    <h1 class="hero-title">Worn by those<br>who move <em>in silence.</em></h1>
+    <div class="hero-line"><div class="hero-line-seg"></div><div class="hero-line-dot"></div><div class="hero-line-seg"></div></div>
+    <p class="hero-sub">Timepieces crafted for those who understand that true luxury is never loud.</p>
+    <div>
+      <a href="#collection" class="btn-gold">Discover the Collection</a>
+      <a href="#story" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-line"></div></div>
+</section>
+
+<section class="collection-bg section-full" id="collection">
+  <div class="collection-header reveal">
+    <span class="section-eyebrow">The Collection</span>
+    <h2 class="section-title">Precision in <em>every detail</em></h2>
+    <div class="gold-rule" style="justify-content:center;"><div class="gold-rule-line"></div><div class="gold-rule-gem"></div><div class="gold-rule-line"></div></div>
+  </div>
+  <div class="collection-grid">
+    <div class="watch-card reveal">
+      <div class="watch-img">
+        <svg class="w-svg" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="80" y="0" width="40" height="30" rx="4" fill="#1a3050" stroke="#B8963E" stroke-width="0.8"/>
+          <rect x="80" y="250" width="40" height="30" rx="4" fill="#1a3050" stroke="#B8963E" stroke-width="0.8"/>
+          <rect x="30" y="50" width="140" height="180" rx="20" fill="#112236" stroke="#B8963E" stroke-width="1"/>
+          <rect x="44" y="64" width="112" height="152" rx="14" fill="#0a1828" stroke="rgba(184,150,62,0.4)" stroke-width="0.6"/>
+          <circle cx="100" cy="140" r="52" fill="none" stroke="rgba(184,150,62,0.2)" stroke-width="0.5"/>
+          <text x="100" y="104" text-anchor="middle" fill="#E8D5A3" font-size="10" font-family="serif" opacity="0.8">XII</text>
+          <text x="148" y="144" text-anchor="middle" fill="#E8D5A3" font-size="10" font-family="serif" opacity="0.8">III</text>
+          <text x="100" y="182" text-anchor="middle" fill="#E8D5A3" font-size="10" font-family="serif" opacity="0.8">VI</text>
+          <text x="52" y="144" text-anchor="middle" fill="#E8D5A3" font-size="10" font-family="serif" opacity="0.8">IX</text>
+          <line x1="100" y1="140" x2="100" y2="100" stroke="#E8D5A3" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+          <line x1="100" y1="140" x2="128" y2="138" stroke="#E8D5A3" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="100" cy="140" r="3" fill="#B8963E"/>
+          <text x="100" y="165" text-anchor="middle" fill="#B8963E" font-size="7" font-family="serif" letter-spacing="1">VELMONT</text>
+          <rect x="188" y="120" width="8" height="20" rx="2" fill="#1a3050" stroke="#B8963E" stroke-width="0.6"/>
+        </svg>
+        <div class="watch-card-overlay"></div>
+      </div>
+      <div class="watch-info">
+        <span class="watch-badge">Signature Series</span>
+        <div class="watch-name">Le Classique</div>
+        <div class="watch-price">€ 289</div>
+        <a href="#" class="watch-cta">View Details →</a>
+      </div>
+    </div>
+    <div class="watch-card reveal" style="transition-delay:.15s">
+      <div class="watch-img" style="background:radial-gradient(ellipse at 50% 40%, #2a1a0a 0%, #0f0a05 100%);">
+        <svg class="w-svg" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="80" y="0" width="40" height="30" rx="4" fill="#1a1005" stroke="#B8963E" stroke-width="0.8"/>
+          <rect x="80" y="250" width="40" height="30" rx="4" fill="#1a1005" stroke="#B8963E" stroke-width="0.8"/>
+          <rect x="30" y="50" width="140" height="180" rx="8" fill="#1a1005" stroke="#B8963E" stroke-width="1.2"/>
+          <rect x="44" y="64" width="112" height="152" rx="6" fill="#0d0800" stroke="rgba(184,150,62,0.5)" stroke-width="0.8"/>
+          <circle cx="100" cy="140" r="48" fill="none" stroke="rgba(184,150,62,0.15)" stroke-width="0.5"/>
+          <text x="100" y="104" text-anchor="middle" fill="#B8963E" font-size="10" font-family="serif">XII</text>
+          <text x="148" y="144" text-anchor="middle" fill="#B8963E" font-size="10" font-family="serif">III</text>
+          <text x="100" y="182" text-anchor="middle" fill="#B8963E" font-size="10" font-family="serif">VI</text>
+          <text x="52" y="144" text-anchor="middle" fill="#B8963E" font-size="10" font-family="serif">IX</text>
+          <line x1="100" y1="140" x2="100" y2="102" stroke="#B8963E" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="100" y1="140" x2="130" y2="137" stroke="#B8963E" stroke-width="0.8" stroke-linecap="round"/>
+          <circle cx="100" cy="140" r="3" fill="#E8D5A3"/>
+          <text x="100" y="165" text-anchor="middle" fill="#E8D5A3" font-size="7" font-family="serif" letter-spacing="1">VELMONT</text>
+          <rect x="188" y="120" width="8" height="20" rx="2" fill="#1a1005" stroke="#B8963E" stroke-width="0.8"/>
+        </svg>
+        <div class="watch-card-overlay"></div>
+      </div>
+      <div class="watch-info" style="border-top-color:rgba(184,150,62,0.4);">
+        <span class="watch-badge">Heritage Series</span>
+        <div class="watch-name">Le Noir</div>
+        <div class="watch-price">€ 349</div>
+        <a href="#" class="watch-cta">View Details →</a>
+      </div>
+    </div>
+    <div class="watch-card reveal" style="transition-delay:.3s">
+      <div class="watch-img" style="background:radial-gradient(ellipse at 50% 40%, #1a2a3a 0%, #080f18 100%);">
+        <svg class="w-svg" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="80" y="0" width="40" height="30" rx="4" fill="#0f1e2e" stroke="#c8c0b0" stroke-width="0.8"/>
+          <rect x="80" y="250" width="40" height="30" rx="4" fill="#0f1e2e" stroke="#c8c0b0" stroke-width="0.8"/>
+          <rect x="30" y="50" width="140" height="180" rx="70" fill="#0f1e2e" stroke="#c8c0b0" stroke-width="1"/>
+          <rect x="44" y="64" width="112" height="152" rx="56" fill="#080f1a" stroke="rgba(200,192,176,0.3)" stroke-width="0.6"/>
+          <circle cx="100" cy="140" r="48" fill="none" stroke="rgba(200,192,176,0.15)" stroke-width="0.5"/>
+          <text x="100" y="104" text-anchor="middle" fill="#c8c0b0" font-size="10" font-family="serif" opacity="0.8">XII</text>
+          <text x="148" y="144" text-anchor="middle" fill="#c8c0b0" font-size="10" font-family="serif" opacity="0.8">III</text>
+          <text x="100" y="182" text-anchor="middle" fill="#c8c0b0" font-size="10" font-family="serif" opacity="0.8">VI</text>
+          <text x="52" y="144" text-anchor="middle" fill="#c8c0b0" font-size="10" font-family="serif" opacity="0.8">IX</text>
+          <line x1="100" y1="140" x2="100" y2="102" stroke="#c8c0b0" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+          <line x1="100" y1="140" x2="130" y2="137" stroke="#c8c0b0" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="100" cy="140" r="3" fill="#c8c0b0"/>
+          <text x="100" y="165" text-anchor="middle" fill="#B8963E" font-size="7" font-family="serif" letter-spacing="1">VELMONT</text>
+          <rect x="188" y="120" width="8" height="20" rx="2" fill="#0f1e2e" stroke="#c8c0b0" stroke-width="0.6"/>
+        </svg>
+        <div class="watch-card-overlay"></div>
+      </div>
+      <div class="watch-info">
+        <span class="watch-badge">Prestige Series</span>
+        <div class="watch-name">Le Blanc</div>
+        <div class="watch-price">€ 319</div>
+        <a href="#" class="watch-cta">View Details →</a>
+      </div>
+    </div>
+  </div>
+  <div class="collection-footer reveal"><a href="#" class="btn-gold">View Full Collection</a></div>
+</section>
+
+<section id="story">
+  <div class="section">
+    <div class="story-grid">
+      <div class="story-visual reveal">
+        <div class="story-box">
+          <div class="story-quote-mark">"</div>
+          <svg viewBox="0 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:60%;opacity:0.9;">
+            <rect x="100" y="0" width="80" height="50" rx="6" fill="#1a3050" stroke="#B8963E" stroke-width="0.8"/>
+            <rect x="100" y="290" width="80" height="50" rx="6" fill="#1a3050" stroke="#B8963E" stroke-width="0.8"/>
+            <rect x="20" y="60" width="240" height="220" rx="20" fill="#112236" stroke="#B8963E" stroke-width="1"/>
+            <rect x="38" y="78" width="204" height="184" rx="14" fill="#0a1828" stroke="rgba(184,150,62,0.4)" stroke-width="0.6"/>
+            <circle cx="140" cy="170" r="80" fill="none" stroke="rgba(184,150,62,0.12)" stroke-width="0.6"/>
+            <text x="140" y="118" text-anchor="middle" fill="#E8D5A3" font-size="14" font-family="serif" opacity="0.8">XII</text>
+            <text x="208" y="174" text-anchor="middle" fill="#E8D5A3" font-size="14" font-family="serif" opacity="0.8">III</text>
+            <text x="140" y="230" text-anchor="middle" fill="#E8D5A3" font-size="14" font-family="serif" opacity="0.8">VI</text>
+            <text x="72" y="174" text-anchor="middle" fill="#E8D5A3" font-size="14" font-family="serif" opacity="0.8">IX</text>
+            <line x1="140" y1="170" x2="140" y2="118" stroke="#E8D5A3" stroke-width="1.5" stroke-linecap="round" opacity="0.9"/>
+            <line x1="140" y1="170" x2="185" y2="165" stroke="#E8D5A3" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <circle cx="140" cy="170" r="4" fill="#B8963E"/>
+            <text x="140" y="200" text-anchor="middle" fill="#B8963E" font-size="9" font-family="serif" letter-spacing="2">VELMONT</text>
+            <rect x="262" y="148" width="12" height="26" rx="3" fill="#1a3050" stroke="#B8963E" stroke-width="0.7"/>
+          </svg>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.2s">
+        <span class="section-eyebrow">Our Story</span>
+        <h2 class="section-title">Built on the belief that<br><em>time deserves respect.</em></h2>
+        <div class="gold-rule"><div class="gold-rule-line"></div><div class="gold-rule-gem"></div></div>
+        <p class="story-text">Velmont Watch was born from a simple conviction: <strong>a watch is not an accessory — it is a statement.</strong> We design for the person who enters a room and says nothing, yet commands everything. Every piece in our collection is an exercise in restraint — the art of leaving out what does not belong.</p>
+        <p class="story-text" style="margin-top:-16px;">We draw from the traditions of Swiss watchmaking, the quiet confidence of old European luxury, and the belief that <strong>true quality never needs to announce itself.</strong></p>
+        <div style="margin-top:32px;">
+          <div class="story-sig">Velmont</div>
+          <div class="story-sig-title">Maison de Luxe · Est. 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-bg section-full">
+  <div style="text-align:center;padding:0 56px;max-width:1360px;margin:0 auto 56px;" class="reveal">
+    <span class="section-eyebrow">What They Say</span>
+    <h2 class="section-title">The <em>verdict</em></h2>
+    <div class="gold-rule" style="justify-content:center;"><div class="gold-rule-line"></div><div class="gold-rule-gem"></div><div class="gold-rule-line"></div></div>
+  </div>
+  <div class="test-grid" style="max-width:1360px;margin:0 auto;padding:0 56px;">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"I've owned watches three times the price. None of them made me feel the way Le Noir does when I put it on. This is what confidence looks like on your wrist."</p>
+      <div class="test-author">Alexander V.</div>
+      <div class="test-location">Amsterdam, Netherlands</div>
+    </div>
+    <div class="test-card reveal" style="transition-delay:.15s">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"The packaging alone tells you everything. Before I even saw the watch I knew this brand understood luxury. Le Classique is now the only watch I wear."</p>
+      <div class="test-author">Julien M.</div>
+      <div class="test-location">Paris, France</div>
+    </div>
+    <div class="test-card reveal" style="transition-delay:.3s">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"People ask about my watch everywhere I go. There is something about Velmont that reads expensive without being flashy. Old money in the truest sense."</p>
+      <div class="test-author">Thomas K.</div>
+      <div class="test-location">London, UK</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section newsletter">
+    <div class="newsletter-inner reveal">
+      <span class="section-eyebrow">Stay Close</span>
+      <h2 class="newsletter-title">The first to know.<br><em>The few who matter.</em></h2>
+      <div class="gold-rule" style="justify-content:center;margin-bottom:24px;"><div class="gold-rule-line"></div><div class="gold-rule-gem"></div><div class="gold-rule-line"></div></div>
+      <p class="newsletter-sub">New releases, private previews and exclusive access — for those on the list.</p>
+      <div class="nl-form">
+        <input class="nl-input" type="email" placeholder="Your email address">
+        <button class="nl-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Velmont</div>
+      <div class="footer-brand-sub">Watch · Maison de Luxe</div>
+      <p class="footer-brand-text">Timepieces designed for those who move in silence. Crafted with intention. Worn with purpose.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Collections</div>
+      <ul><li><a href="#">Le Classique</a></li><li><a href="#">Le Noir</a></li><li><a href="#">Le Blanc</a></li><li><a href="#">All Watches</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul><li><a href="#">Our Story</a></li><li><a href="#">Craftsmanship</a></li><li><a href="#">Boutique</a></li><li><a href="#">Contact</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <ul><li><a href="#">Shipping & Returns</a></li><li><a href="#">Warranty</a></li><li><a href="#">Care Guide</a></li><li><a href="#">FAQ</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Velmont Watch. All rights reserved.</span>
+    <span class="footer-copy">Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+{% schema %}
+{
+  "name": "Velmont Home",
+  "settings": []
+}
+{% endschema %}
