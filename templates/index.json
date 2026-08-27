@@ -266,7 +266,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h2>Gerelateerde producten</h2>",
+            "text": "<h2><strong>BESTSELLERS</strong></h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
